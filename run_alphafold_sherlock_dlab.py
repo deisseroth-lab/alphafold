@@ -86,7 +86,7 @@ def main(argv):
             os.path.join(data_dir, "small_bfd", "bfd-first_non_consensus_sequences.fasta")
         ])
     else:
-        db_list.extend([['bfd', 'uniclust30']])
+        db_list.extend(['bfd', 'uniclust30'])
         run_command.extend([
             "--bfd_database_path",
             os.path.join(ssd_data_dir, "bfd", "bfd_metaclust_clu_complete_id30_c90_final_seq.sorted_opt"),
@@ -114,11 +114,11 @@ def db2ssd(db_list, data_dir, ssd_data_dir):
             raise RunAlphaFoldDLabError("Could not acquire lockfile for db copy")
         logging.info("Successfully acquired lockfile.")
  
-        if os.exists(ssd_db_dir):
+        if os.path.exists(ssd_db_dir):
             logging.info("db already exists: %s", db)
             continue
         
-        cmd = ["rclone", "copy", db_dir, ssd_db_dir]
+        cmd = ["rclone", "copy", "--copy-links", db_dir, ssd_db_dir]
         logging.info("Cloning db with command: %s", cmd)
         subprocess.run(cmd, check=True)
         lock.release()
