@@ -25,12 +25,16 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
       build-essential \
       cmake \
       cuda-command-line-tools-${CUDA/./-} \
+      curl \
       git \
       hmmer \
       kalign \
       tzdata \
       wget \
+      unzip \
     && rm -rf /var/lib/apt/lists/*
+
+RUN curl https://rclone.org/install.sh | bash
 
 # Compile HHsuite from source.
 RUN git clone --branch v3.3.0 https://github.com/soedinglab/hh-suite.git /tmp/hh-suite \
@@ -75,11 +79,6 @@ RUN patch -p0 < /app/alphafold/docker/openmm.patch
 # We need to run `ldconfig` first to ensure GPUs are visible, due to some quirk
 # with Debian. See https://github.com/NVIDIA/nvidia-docker/issues/1399 for
 # details.
-# ENTRYPOINT does not support easily running multiple commands, so instead we
-# write a shell script to wrap them up.
+RUN ldconfig
 WORKDIR /app/alphafold
-RUN echo $'#!/bin/bash\n\
-ldconfig\n\
-python /app/alphafold/run_alphafold.py "$@"' > /app/run_alphafold.sh \
-  && chmod +x /app/run_alphafold.sh
-ENTRYPOINT ["/app/run_alphafold.sh"]
+ENTRYPOINT ["python", "/app/alphafold/run_alphafold_sherlock_dlab.py"]
