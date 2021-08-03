@@ -35,6 +35,8 @@ def main(argv):
     if len(argv) > 1:
         raise app.UsageError('Too many command-line arguments.')
     
+    logging.info('Command line flags\n' +FLAGS.flags_into_string())    
+    
     # TODO: Make data_dir and ssd_data_dir flags.
     group_scratch = os.environ['GROUP_SCRATCH']
     ssd_scratch = os.environ['L_SCRATCH']
@@ -72,6 +74,7 @@ def main(argv):
         "--obsolete_pdbs_path", os.path.join(data_dir, "pdb_mmcif", "obsolete.dat"),
         "--max_template_date", FLAGS.max_template_date,
         "--preset", FLAGS.preset,
+        "--log_dir", output_path,
         "--logtostderr",
     ]
 

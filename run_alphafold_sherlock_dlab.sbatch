@@ -9,6 +9,9 @@
 #SBATCH --partition=owners
 #SBATCH --constraint="(GPU_SKU:A100_PCIE|GPU_SKU:A100_SXM4)&CPU_GEN:RME"
 
+set -e
+set -x
+
 # There is no constraint to use nodes with large SSD, so instead use the 
 # RME cpu constraint.  RME cpus are on machines with large local SSD.
 
