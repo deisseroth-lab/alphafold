@@ -81,4 +81,4 @@ RUN patch -p0 < /app/alphafold/docker/openmm.patch
 # details.
 RUN ldconfig
 WORKDIR /app/alphafold
-ENTRYPOINT ["python", "/app/alphafold/run_alphafold_sherlock_dlab.py"]
+ENTRYPOINT ["python", "/app/alphafold/run_alphafold_dlab.py"]
