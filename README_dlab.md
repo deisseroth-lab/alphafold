@@ -73,3 +73,12 @@ To make the new version the default, update the symlink on a Sherlock machine:
 cd $GROUP_HOME/projects/alphafold/singularity/
 ln -sf alphafold_2021.8.0.sif alphafold.sif
 ```
+
+## Keep database and model data on GROUP_SCRATCH
+
+The GROUP_SCRATCH is purged of files not created in the last 90 days.  To recopy the files:
+
+```sh
+ml system mpifileutils
+srun -p deissero -n 16 -t 48:00:00 dcp /scratch/groups/deissero/projects/alphafold /oak/stanford/groups/deissero/projects/
+```
