@@ -6,15 +6,14 @@ contains update and scripts to run AF on Stanford's Sherlock cluster.
 ## Quick Start
 
 You should be familiar the important command-line flags:
-`max_template_date`, `model_preset`, `db_preset`, and `fasta_paths`).
+`max_template_date`, `model_preset`, `db_preset`, `is_prokaryote_list`, and `fasta_paths`.
 For details on these flags see the
 [AF docs](https://github.com/deepmind/alphafold/blob/main/README.md#running-alphafold)  
 
 From within your clone of the alphafold repo on Sherlock:
 
 ```sh
-git checkout dlab-sherlock-multimer  # Should be default, so this may not be required.
-python3 run_alphafold_dlab_slurm.py \
+python3 $GROUP_HOME/projects/alphafold/alphafold/run_alphafold_dlab_slurm.py \
     --max_template_date 2100-01-01 \
     --model_preset monomer \
     --db_preset full_dbs \
