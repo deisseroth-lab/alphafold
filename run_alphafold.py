@@ -274,6 +274,12 @@ def main(argv):
   if len(argv) > 1:
     raise app.UsageError('Too many command-line arguments.')
 
+  if FLAGS.log_dir != '':
+    os.makedirs(FLAGS.log_dir, exist_ok=True)
+    logging.get_absl_handler().use_absl_log_file()
+
+  logging.info('Command line flags\n' + FLAGS.flags_into_string())    
+
   for tool_name in (
       'jackhmmer', 'hhblits', 'hhsearch', 'hmmsearch', 'hmmbuild', 'kalign'):
     if not FLAGS[f'{tool_name}_binary_path'].value:
