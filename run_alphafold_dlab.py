@@ -81,7 +81,7 @@ def main(argv):
         run_command.extend(["--pdb70_database_path", os.path.join(FLAGS.data_dir, "pdb70", "pdb70")])
 
     if FLAGS.is_prokaryote_list:
-        run_command.extend(["--is_prokaryote_list"], ','.join(FLAGS.is_prokaryote_list))
+        run_command.extend(["--is_prokaryote_list", ','.join(FLAGS.is_prokaryote_list)])
 
     if FLAGS.db_preset == "reduced_dbs":
         run_command.extend([
