@@ -61,7 +61,7 @@ def main(fasta_paths,
         "--log_dir", log_dir,
     ]
     if is_prokaryote_list:
-        alphafold_dlab_args.extend(["--is_prokaryote_list"], is_prokaryote_list)
+        alphafold_dlab_args.extend(["--is_prokaryote_list", is_prokaryote_list])
 
     script_command = singularity_command + alphafold_dlab_args
     # shlex join requires python 3.8
