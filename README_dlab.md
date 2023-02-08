@@ -80,5 +80,4 @@ The GROUP_SCRATCH is purged of files not created in the last 90 days.  To recopy
 
 ```sh
 ml system mpifileutils
-srun -p deissero -n 16 -t 48:00:00 dcp /scratch/groups/deissero/projects/alphafold /oak/stanford/groups/deissero/projects/
-```
+srun -p deissero -n 16 -t 48:00:00 dcp /oak/stanford/groups/deissero/projects/alphafold scratch/groups/deissero/projects/``
